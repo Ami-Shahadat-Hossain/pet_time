@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_delivery_verifications', function (Blueprint $table) {
+        Schema::create('shop_followers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->text('image');
-            $table->timestamps(0);
+            $table->integer('shop_id');
+            $table->integer('user_id')->comment('Customer ID');
+            $table->timestamps();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_delivery_verifications');
+        Schema::dropIfExists('shop_followers');
     }
 };

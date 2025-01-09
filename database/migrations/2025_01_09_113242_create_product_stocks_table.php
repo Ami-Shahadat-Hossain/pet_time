@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_delivery_verifications', function (Blueprint $table) {
+        Schema::create('product_stocks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->text('image');
+            $table->foreignId('product_id')->nullable()->constrained()->onDelete('cascade');
+            $table->string('variant', 255)->nullable();
+            $table->string('sku', 255)->nullable();
+            $table->decimal('price', 8, 2)->default(0.00);
+            $table->integer('qty')->default(0);
             $table->timestamps(0);
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_delivery_verifications');
+        Schema::dropIfExists('product_stocks');
     }
 };

@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_delivery_verifications', function (Blueprint $table) {
+        Schema::create('search_functions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->text('image');
+            $table->string('key', 150)->nullable();
+            $table->string('url', 250)->nullable();
+            $table->string('visible_for', 191)->default('admin');
             $table->timestamps(0);
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_delivery_verifications');
+        Schema::dropIfExists('search_functions');
     }
 };

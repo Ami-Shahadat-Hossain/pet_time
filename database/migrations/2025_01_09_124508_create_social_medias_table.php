@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_delivery_verifications', function (Blueprint $table) {
+        Schema::create('social_medias', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->text('image');
+            $table->string('name', 100);
+            $table->string('link', 100);
+            $table->string('icon', 100)->nullable();
+            $table->integer('active_status');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps(0);
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_delivery_verifications');
+        Schema::dropIfExists('social_medias');
     }
 };

@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_delivery_verifications', function (Blueprint $table) {
+        Schema::create('order_expected_delivery_histories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('order_id');
-            $table->text('image');
+            $table->unsignedBigInteger('user_id');
+            $table->string('user_type', 191); // VARCHAR(191)
+            $table->date('expected_delivery_date'); // DATE
+            $table->string('cause', 191)->nullable();
             $table->timestamps(0);
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_delivery_verifications');
+        Schema::dropIfExists('order_expected_delivery_histories');
     }
 };

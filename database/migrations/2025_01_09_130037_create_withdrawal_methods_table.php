@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_delivery_verifications', function (Blueprint $table) {
+        Schema::create('withdrawal_methods', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->text('image');
+            $table->string('method_name', 191);
+            $table->text('method_fields');
+            $table->boolean('is_default')->default(false);
+            $table->boolean('is_active')->default(true);
             $table->timestamps(0);
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_delivery_verifications');
+        Schema::dropIfExists('withdrawal_methods');
     }
 };
